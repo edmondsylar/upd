@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Get Mac address.</title>
+</head>
+<body>
+    <?php
+        $ip = $_SERVER['REMOTE_ADDR'];
+        $MAC = exec('getmac');
+        $mac_ = str_replace("Media disconnected", "", $MAC);
+        // Lets try to explode the server object.
+
+    ?>
+</body>
+    <h1>getting mac Address of requesting client.</h1>
+    <?php echo "IP Address ". $ip; ?> <br>
+    <?php echo "Mac Address ".  $mac_; ?>
+
+</html>
