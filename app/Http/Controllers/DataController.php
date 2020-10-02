@@ -16,11 +16,12 @@ class DataController extends Controller
     {
         //This is going to be our Index file for data.
         $ip = $_SERVER['REMOTE_ADDR'];
-        $mac = substr(exec('getmac'), 0, 17);
+        // $mac = exec('netstat -a');
+        $os = strtoupper(substr(PHP_OS, 0, 3));
 
         $response = array(
             'IP'=>$ip,
-            'Mac'=>$mac
+            'Os'=>$os
         );
 
         return $response;
