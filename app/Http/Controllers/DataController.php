@@ -12,19 +12,13 @@ class DataController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
-    {
-        //This is going to be our Index file for data.
-        $ip = $_SERVER['REMOTE_ADDR'];
-        // $mac = exec('netstat -a');
-        $os = strtoupper(substr(PHP_OS, 0, 3));
+    public function index(Request $request)
+    {  
+        $_ = new Data;
+        $os = $_->Os();
 
-        $response = array(
-            'IP'=>$ip,
-            'Os'=>$os
-        );
-
-        return $response;
+        return $os;
+     
     }
 
     /**
