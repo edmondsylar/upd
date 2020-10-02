@@ -15,7 +15,15 @@ class DataController extends Controller
     public function index()
     {
         //This is going to be our Index file for data.
-        return [substr(exec('getmac'), 0, 17), substr(shell_exec('getmac'), 159,20)];
+        $ip = $_SERVER['REMOTE_ADDR'];
+        $mac = substr(exec('getmac'), 0, 17);
+
+        $response = array(
+            'IP'=>$ip,
+            'Mac'=>$mac
+        );
+
+        return $response;
     }
 
     /**
