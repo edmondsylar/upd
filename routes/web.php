@@ -17,17 +17,6 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/data', function(){
-    $ip = $_SERVER['REMOTE_ADDR'];
-    $mac = str_replace("Media disconnected", "", exec('getmac'));
-    
-    $user_data = array(
-        'IP_Address'=>$ip,
-        'Mac Address'=>$mac,
-        'user Agent'=>$_SERVER['HTTP_USER_AGENT'],
-        'Server Signature'=>$_SERVER['SERVER_SIGNATURE'],
-        'More' => $_SERVER
-    );
-
-    return $user_data;
-});
+Route::resources([
+    'data'=> DataController::class
+]);
