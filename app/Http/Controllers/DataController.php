@@ -24,6 +24,7 @@ class DataController extends Controller
          * cases there is a possibility that this will not work.
          */
         $mac = str_replace("   Media disconnected", "", exec('getmac'));
+        if($mac === ""){ $mac = 'Unknown'; }
         $signature = Crypt::encryptString('secret');
 
         /**
