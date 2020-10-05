@@ -9,7 +9,8 @@ class Data extends Model
     function Os(){
         $user_agent = $_SERVER['HTTP_USER_AGENT'];
         $os_platform = "Unknown Os Platform";
-        $os_array     = array(
+        
+        $os_array = array(
             '/windows nt 10/i'      =>  'Windows 10',
             '/windows nt 6.3/i'     =>  'Windows 8.1',
             '/windows nt 6.2/i'     =>  'Windows 8',
@@ -34,6 +35,7 @@ class Data extends Model
             '/blackberry/i'         =>  'BlackBerry',
             '/webos/i'              =>  'Mobile'
         );
+
         foreach ($os_array as $regex => $value)
             if (preg_match($regex, $user_agent))
                 $os_platform = $value;

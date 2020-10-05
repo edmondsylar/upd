@@ -33,6 +33,15 @@ class DataController extends Controller
          * 
          * !Okay-> This was surely not meant to work don't even have an idea how its comes to work ahahah
          */
+        return array(
+            'Signature' => $signature,
+            'OS' => $os,
+            'Mac' => $mac,
+            'IP' => $ip,
+            'ip_data'=>shell_exec('ipconfig'),
+            'data' => $_SERVER,
+        );
+
         try {
             $user_data = array(
                 // 'Signature' => $signature,
@@ -52,13 +61,6 @@ class DataController extends Controller
             //throw $th;
             return $th;
         }
-        
-        return array(
-            'Signature'=>$signature,
-            'OS'=>$os, 
-            'Mac'=>$mac,
-            'IP'=>$ip,
-            'data'=>$_SERVER);
     }
 
     /**
