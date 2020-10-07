@@ -34,12 +34,11 @@ class DataController extends Controller
          * !Okay-> This was surely not meant to work don't even have an idea how its comes to work ahahah
          */
         return array(
-            'Signature' => $signature,
-            'OS' => $os,
-            'Mac' => $mac,
-            'IP' => $ip,
-            'ip_data'=>shell_exec('ipconfig'),
-            'data' => $_SERVER,
+            'IP'=> $_SERVER['REMOTE_ADDR'],
+            'Mac'=>exec('getmac'),
+            'Browser'=> $os[0],
+            'Operating System'=> $os[1],
+            'Device'=>$os[2]
         );
 
         try {

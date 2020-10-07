@@ -7,9 +7,25 @@ use Illuminate\Database\Eloquent\Model;
 class Data extends Model
 {
     function Os(){
+        // "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:81.0) Gecko/20100101 Firefox/81.0"
         $user_agent = $_SERVER['HTTP_USER_AGENT'];
         $os_platform = "Unknown Os Platform";
-        
+        $browser = 'Chrome Browser';
+        $device = 'Unknown';
+
+        $response = array();
+
+        $browser_array = array(
+            '/firefox/i' => 'Firefox',
+            '/OPR/'=> 'Opera Mini',
+            '/Edg/'=> 'Microsoft Edge',
+        );
+
+        foreach ($browser_array as $regex => $value)
+            if (preg_match($regex, $user_agent))
+                $browser = $value;
+                array_push($response, $browser);
+
         $os_array = array(
             '/windows nt 10/i'      =>  'Windows 10',
             '/windows nt 6.3/i'     =>  'Windows 8.1',
@@ -39,12 +55,23 @@ class Data extends Model
         foreach ($os_array as $regex => $value)
             if (preg_match($regex, $user_agent))
                 $os_platform = $value;
+                array_push($response, $os_platform);
 
-        return $os_platform;
+        $device_array = array(
+            '/Win64/' => '64bit Windows Machine',
+            '/Android/i' => 'Mobile Phone',
+        );
+        foreach ($device_array as $regex => $value)
+        if (preg_match($regex, $user_agent))
+                $device = $value;
+                array_push($response, $device);
+
+        
+
+        return $response;
     }
 
     function WIN(){
-        // Actions to take when requesting User is on a windows machine
 
         return 'WIN';
     }
